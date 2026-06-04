@@ -9,7 +9,9 @@ boolean wKey, sKey, aKey, dKey, upKey, downKey, leftKey, rightKey;
 
 //car variables
 float carBodyX, carBodyY, carBodyL, carBodyW, carTipX, carTipY, carTipD;
-
+float carAngle;
+float carVX, carVY;
+float friction;
 
 
 void setup() {
@@ -27,6 +29,9 @@ void setup() {
   carTipX = 200;
   carTipY = 600;
   carTipD = 20;
+  carAngle = 0;
+  carVX = carVY = 0;
+  friction = 0.95;
 }
 
 void draw() {

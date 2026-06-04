@@ -1,30 +1,45 @@
 void game() {
-  //draw race car
   background(220);
-  fill(255);
-  circle(carTipX, carTipY, carTipD);
-  ellipse(carBodyX, carBodyY, carBodyL, carBodyW);
   
   //animate cars
   if(wKey) {
-    carTipY -=  5;
-    carBodyY -= 5;
+    //set angle
+    carAngle = 0;
+    //accelerate in facing direction
+    carVX += cos(carAngle) * 0.5;
+    carVY += sin(carAngle) * 0.5;
   }
   if(sKey) {
-    carTipY += 5;
-    carBodyY += 5;
+    carAngle = PI;
+    carVX += cos(carAngle) * 0.5;
+    carVY += sin(carAngle) * 0.5;
+    //carTipY += 5;
+    //carBodyY += 5;
   }
   if(aKey){
-    carTipX -= 5;
-    carBodyX -= 5;
+    carAngle = 3 * PI / 2;
+    //carTipX -= 5;
+    //carBodyX -= 5;
   }
   if(dKey){
-    carTipX += 5;
-    carBodyX += 5;
+    //carTipX += 5;
+    //carBodyX += 5;
+    carAngle = PI / 2;
   }
   
+  carVX *= friction;
+  carVY *= friction;
+  carBodyX += carVX;
+  carBodyY += carVY;
   
-  
+  //draw race car
+  pushMatrix();
+  translate(carBodyX, carBodyY);
+  rotate(carAngle);
+  fill(255);
+  ellipse(0, 0, carBodyL, carBodyW);
+  circle(0, -carBodyL / 2, carTipD);
+  popMatrix();
   
 }
 
