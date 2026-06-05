@@ -1,48 +1,78 @@
 void game() {
-  background(220);
-  
+  drawTrack();
+
   //animate cars
-  if(wKey) {
-    //set angle
-    carAngle = 0;
+  if (wKey) {
+    carTargetAngle = -PI/2;
     //accelerate in facing direction
-    carVX += cos(carAngle) * 0.5;
-    carVY += sin(carAngle) * 0.5;
+    carVX += 0;
+    carVY -= 0.3;
   }
-  if(sKey) {
-    carAngle = PI;
-    carVX += cos(carAngle) * 0.5;
-    carVY += sin(carAngle) * 0.5;
-    //carTipY += 5;
-    //carBodyY += 5;
+  if (sKey) {
+    carTargetAngle = PI/2;
+    //accelerate in facing direction
+    carVX += 0;
+    carVY += 0.3;
   }
-  if(aKey){
-    carAngle = 3 * PI / 2;
-    //carTipX -= 5;
-    //carBodyX -= 5;
+  if (aKey) {
+    carTargetAngle = PI;
+    //accelerate in facing direction
+    carVX -= 0.3;
+    carVY += 0;
   }
-  if(dKey){
-    //carTipX += 5;
-    //carBodyX += 5;
-    carAngle = PI / 2;
+  if (dKey) {
+    carTargetAngle = 0;
+    //accelerate in facing direction
+    carVX += 0.3;
+    carVY += 0;
   }
-  
-  carVX *= friction;
-  carVY *= friction;
+
+  //calculate angle needed to turn and ensure it is within -PI to PI
+  angleDiff = carTargetAngle - carAngle;
+  if (angleDiff > PI) angleDiff -= 2 * PI;
+  if (angleDiff < -PI) angleDiff += 2 * PI;
+
+  //update car angle and make it with -PI to PI
+  carAngle += angleDiff * 0.10;
+  if (carAngle > PI) carAngle -= 2 * PI;
+  if (carAngle < -PI) carAngle += 2 * PI;
+
+
+  //boundary checking and boucing off the walls
+  boolean bounced = false;
+  if (carBodyX < carBodyW/2) {
+    carBodyX = carBodyW/2;
+    carVX *= -1.5;
+    bounced = true;
+  }
+  if (carBodyX > width - carBodyW/2) {
+    carBodyX = width - carBodyW/2;
+    carVX *= -1.5;
+    bounced = true;
+  }
+  if (carBodyY < carBodyL/2) {
+    carBodyY = carBodyL/2;
+    carVY *= -1.5;
+    bounced = true;
+  }
+  if (carBodyY > height - carBodyL/2) {
+    carBodyY = height - carBodyL/2;
+    carVY *= -1.5;
+    bounced = true;
+  }
+
+  //friction
+  if (!bounced) {
+    carVX *= friction;
+    carVY *= friction;
+  }
+  //movement
   carBodyX += carVX;
   carBodyY += carVY;
-  
+
   //draw race car
-  pushMatrix();
-  translate(carBodyX, carBodyY);
-  rotate(carAngle);
-  fill(255);
-  ellipse(0, 0, carBodyL, carBodyW);
-  circle(0, -carBodyL / 2, carTipD);
-  popMatrix();
-  
+  drawCar();
 }
 
-void gameClicks(){
-  
+void gameClicks() {
 }

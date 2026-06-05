@@ -12,10 +12,13 @@ float carBodyX, carBodyY, carBodyL, carBodyW, carTipX, carTipY, carTipD;
 float carAngle;
 float carVX, carVY;
 float friction;
+float carTargetAngle;
+float angleDiff;
+boolean bounced;
 
 
 void setup() {
-  size(800, 800);
+  size(1500, 900);
   mode = GAME;
 
   //initialize keys
@@ -32,6 +35,8 @@ void setup() {
   carAngle = 0;
   carVX = carVY = 0;
   friction = 0.95;
+  carTargetAngle = 0;
+  
 }
 
 void draw() {
