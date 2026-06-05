@@ -10,19 +10,19 @@ void game() {
   }
   if (sKey) {
     carTargetAngle = PI/2;
-    //accelerate in facing direction
+    // accelerate in facing direction
     carVX += 0;
     carVY += 0.3;
   }
   if (aKey) {
     carTargetAngle = PI;
-    //accelerate in facing direction
+    // accelerate in facing direction
     carVX -= 0.3;
     carVY += 0;
   }
   if (dKey) {
     carTargetAngle = 0;
-    //accelerate in facing direction
+    // accelerate in facing direction
     carVX += 0.3;
     carVY += 0;
   }
@@ -59,6 +59,17 @@ void game() {
     carBodyY = height - carBodyL/2;
     carVY *= -1.5;
     bounced = true;
+  }
+
+  //tires collision
+  for (int i = 0; i < tireCount; i++) {
+    if (dist(carBodyX, carBodyY, tireX[i], tireY[i]) < 30) {
+      float pushX = carBodyX - tireX[i];
+      float pushY = carBodyY - tireY[i];
+      float totalPush = sqrt(pushX*pushX + pushY*pushY);
+      carVX = (pushX/totalPush) * 5;
+      carVY = (pushY/totalPush) * 5;
+    }
   }
 
   //friction

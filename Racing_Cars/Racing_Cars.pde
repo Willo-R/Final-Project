@@ -16,6 +16,11 @@ float carTargetAngle;
 float angleDiff;
 boolean bounced;
 
+//collision variables
+float[] tireX;
+float[] tireY;
+int tireCount;
+
 
 void setup() {
   size(1500, 900);
@@ -36,7 +41,17 @@ void setup() {
   carVX = carVY = 0;
   friction = 0.95;
   carTargetAngle = 0;
-  
+
+  //set up array of tires
+  tireCount = 50;
+  tireX = new float[tireCount];
+  tireY = new float[tireCount];
+  //tire positions with 2pi / numOfTire to figure out the position on the ellipse
+  for (int i = 0; i < tireCount; i++) {
+    float angle = i * TWO_PI / tireCount;
+    tireX[i] = width/2 + cos(angle) * 480;
+    tireY[i] = height/2 + sin(angle) * 195;
+  }
 }
 
 void draw() {
