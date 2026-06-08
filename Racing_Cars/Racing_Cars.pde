@@ -8,13 +8,16 @@ final int GAMEOVER = 3;
 boolean wKey, sKey, aKey, dKey, upKey, downKey, leftKey, rightKey;
 
 //car variables
-float carBodyX, carBodyY, carBodyL, carBodyW, carTipX, carTipY, carTipD;
+float carBodyX, carBodyY, carBodyL, carBodyW;
 float carAngle;
 float carVX, carVY;
 float friction;
-float carTargetAngle;
-float angleDiff;
-boolean bounced;
+
+//car2 variables
+float car2BodyX, car2BodyY, car2BodyL, car2BodyW;
+float car2Angle;
+float car2VX, car2VY;
+
 
 //collision variables
 float[] tireX;
@@ -29,18 +32,22 @@ void setup() {
   //initialize keys
   wKey = sKey = aKey = dKey = upKey = downKey = leftKey = rightKey = false;
 
-  //initialize cars
-  carBodyX = 200;
-  carBodyY = 630;
+  //initialize car
+  carBodyX = width / 2 - 50;
+  carBodyY = 120;
   carBodyL = 30;
   carBodyW = 50;
-  carTipX = 200;
-  carTipY = 600;
-  carTipD = 20;
   carAngle = 0;
   carVX = carVY = 0;
   friction = 0.95;
-  carTargetAngle = 0;
+
+  //initialize car2
+  car2BodyX = width / 2 - 50;
+  car2BodyY = 180;
+  car2BodyL = 30;
+  car2BodyW = 50;
+  car2VX = car2VY = 0;
+
 
   //set up array of tires
   tireCount = 50;

@@ -30,7 +30,7 @@ void drawTrack() {
   }
 }
 
-//car design
+//car design & movement with translate
 void drawCar() {
   pushMatrix();
   //car's movement and turning
@@ -64,6 +64,32 @@ void drawCar() {
   rect(11, -24, 6, 11);
 
   //rear wheels
+  rect(-18, 11, 8, 14);
+  rect(10, 11, 8, 14);
+
+  popMatrix();
+}
+
+
+void drawCar2() {
+  pushMatrix();
+  translate(car2BodyX, car2BodyY);
+  rotate(car2Angle + PI/2);
+
+  fill(0, 100, 255);
+  noStroke();
+  rect(-8, -35, 16, 70);
+  rect(-14, -8, 28, 20);
+  fill(30);
+  rect(-6, -6, 12, 13);
+  fill(0, 100, 255);
+  rect(-13, -35, 26, 5);
+  rect(-18, 28, 36, 4);
+  rect(-6, 24, 4, 7);
+  rect(2, 24, 4, 7);
+  fill(20);
+  rect(-17, -24, 6, 11);
+  rect(11, -24, 6, 11);
   rect(-18, 11, 8, 14);
   rect(10, 11, 8, 14);
 
