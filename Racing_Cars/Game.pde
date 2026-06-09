@@ -6,20 +6,15 @@ void game() {
     carVX += cos(carAngle) * 0.6;
     carVY += sin(carAngle) * 0.6;
   }
-
   if (sKey) {
-      //reverse
-      carVX -= cos(carAngle) * 0.5;
-      carVY -= sin(carAngle) * 0.5;
+    carVX -= cos(carAngle) * 0.2;
+    carVY -= sin(carAngle) * 0.2;
   }
+
   //car rotation
   if (aKey) carAngle -= 0.08;
   if (dKey) carAngle += 0.08;
-  
-   if(sKey && dKey) {
-    carVX += cos(carAngle - PI/2) * 0.0001;
-    carVY += sin(carAngle - PI/2) * 0.0001;
-  }
+
 
 
   //animate car2
@@ -28,14 +23,8 @@ void game() {
     car2VY += sin(car2Angle) * 0.6;
   }
   if (downKey) {
-    float speed2 = sqrt(car2VX*car2VX + car2VY*car2VY);
-    if (speed2 > 0.3) {
-      car2VX *= 0.95;
-      car2VY *= 0.95;
-    } else {
-      car2VX -= cos(car2Angle) * 0.5;
-      car2VY -= sin(car2Angle) * 0.5;
-    }
+    car2VX -= cos(car2Angle) * 0.2;
+    car2VY -= sin(car2Angle) * 0.2;
   }
   //car2 rotation
   if (leftKey) car2Angle -= 0.08;
@@ -124,7 +113,7 @@ void game() {
     // inner green field
     carVX *= 0.85;
     carVY *= 0.85;
-  } else if(!(dKey && sKey)){
+  } else if (!(dKey && sKey)) {
     // on track, normal friction
     carVX *= friction;
     carVY *= friction;
@@ -136,12 +125,12 @@ void game() {
   float ex2Inner = (car2BodyX - width/2) / (1050/2);
   float ey2Inner = (car2BodyY - height/2) / (430/2);
   if (ex2Outer*ex2Outer + ey2Outer*ey2Outer > 1) {
-    car2VX *= 0.8;
-    car2VY *= 0.8;
+    car2VX *= 0.85;
+    car2VY *= 0.85;
   } else if (ex2Inner*ex2Inner + ey2Inner*ey2Inner < 1) {
-    car2VX *= 0.8;
-    car2VY *= 0.8;
-  } else {
+    car2VX *= 0.85;
+    car2VY *= 0.85;
+  } else if(!(dKey && sKey)) {
     car2VX *= friction;
     car2VY *= friction;
   }

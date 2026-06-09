@@ -12,6 +12,7 @@ float carBodyX, carBodyY, carBodyL, carBodyW;
 float carAngle;
 float carVX, carVY;
 float friction;
+float maxSpeed;
 
 //car2 variables
 float car2BodyX, car2BodyY, car2BodyL, car2BodyW;
@@ -40,6 +41,7 @@ void setup() {
   carAngle = 0;
   carVX = carVY = 0;
   friction = 0.95;
+  maxSpeed = 15;
 
   //initialize car2
   car2BodyX = width / 2 - 50;
