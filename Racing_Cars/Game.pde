@@ -3,30 +3,29 @@ void game() {
 
   //animate car1
   if (wKey) {
-    carVX += cos(carAngle) * 0.7;
-    carVY += sin(carAngle) * 0.7;
+    carVX += cos(carAngle) * 0.6;
+    carVY += sin(carAngle) * 0.6;
   }
+
   if (sKey) {
-    float speed = sqrt(carVX*carVX + carVY*carVY);
-    if (speed > 0.3) {
-      //brake
-      carVX *= 0.95;
-      carVY *= 0.95;
-    } else {
       //reverse
       carVX -= cos(carAngle) * 0.5;
       carVY -= sin(carAngle) * 0.5;
-    }
   }
   //car rotation
   if (aKey) carAngle -= 0.08;
   if (dKey) carAngle += 0.08;
+  
+   if(sKey && dKey) {
+    carVX += cos(carAngle - PI/2) * 0.0001;
+    carVY += sin(carAngle - PI/2) * 0.0001;
+  }
 
 
   //animate car2
   if (upKey) {
-    car2VX += cos(car2Angle) * 0.7;
-    car2VY += sin(car2Angle) * 0.7;
+    car2VX += cos(car2Angle) * 0.6;
+    car2VY += sin(car2Angle) * 0.6;
   }
   if (downKey) {
     float speed2 = sqrt(car2VX*car2VX + car2VY*car2VY);
@@ -85,8 +84,8 @@ void game() {
       float pushX = carBodyX - tireX[i];
       float pushY = carBodyY - tireY[i];
       float totalPush = sqrt(pushX*pushX + pushY*pushY);
-      carVX = (pushX/totalPush) * 10;
-      carVY = (pushY/totalPush) * 10;
+      carVX = (pushX/totalPush) * 5;
+      carVY = (pushY/totalPush) * 5;
     }
   }
 
@@ -96,8 +95,8 @@ void game() {
       float pushX = car2BodyX - tireX[i];
       float pushY = car2BodyY - tireY[i];
       float totalPush = sqrt(pushX*pushX + pushY*pushY);
-      car2VX = (pushX/totalPush) * 10;
-      car2VY = (pushY/totalPush) * 10;
+      car2VX = (pushX/totalPush) * 5;
+      car2VY = (pushY/totalPush) * 5;
     }
   }
 
@@ -119,13 +118,13 @@ void game() {
   float eyInner = (carBodyY - height/2) / (430/2);
   if (exOuter*exOuter + eyOuter*eyOuter > 1) {
     // outer dark green corners
-    carVX *= 0.8;
-    carVY *= 0.8;
+    carVX *= 0.85;
+    carVY *= 0.85;
   } else if (exInner*exInner + eyInner*eyInner < 1) {
     // inner green field
-    carVX *= 0.8;
-    carVY *= 0.8;
-  } else {
+    carVX *= 0.85;
+    carVY *= 0.85;
+  } else if(!(dKey && sKey)){
     // on track, normal friction
     carVX *= friction;
     carVY *= friction;
