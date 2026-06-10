@@ -27,8 +27,9 @@ int tireCount;
 //scoring variables
 int car1Laps;
 int car2Laps;
-boolean car1CrossedLine;
-boolean car2CrossedLine;
+boolean car1CrossedLine, car1CheckPoint1, car1CheckPoint2, car1CheckPoint3;
+boolean car2CrossedLine, car2CheckPoint1, car2CheckPoint2, car2CheckPoint3;
+
 
 void setup() {
   size(1500, 900);
@@ -65,13 +66,13 @@ void setup() {
     tireX[i] = width/2 + cos(angle) * 480;
     tireY[i] = height/2 + sin(angle) * 195;
   }
-  
-  
+
+
   //scoring set up
-  car1Laps = -1;
+  car1Laps = 0;
   car2Laps = -1;
-  car1CrossedLine = false;
-  car2CrossedLine = false;
+  car1CrossedLine = car1CheckPoint1 = car1CheckPoint2 = car1CheckPoint3 = false;
+  car2CrossedLine = car2CheckPoint1 = car2CheckPoint2 = car2CheckPoint3 = false;
 }
 
 void draw() {

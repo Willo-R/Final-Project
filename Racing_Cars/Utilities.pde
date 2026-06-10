@@ -100,9 +100,9 @@ void drawCar2() {
 void scoreDisplay() {
   textSize(32);
   fill(0);
-  text("P1: " + max(car1Laps, 0) + " / 3", 22, 52);
+  text("P1: " + car1Laps + " / 3", 22, 52);
   fill(255, 100, 0);
-  text("P1: " + max(car1Laps, 0) + " / 3", 20, 50);
+  text("P1: " + car1Laps + " / 3", 20, 50);
 
   fill(0);
   text("P2: " + max(car2Laps, 0) + " / 3", width - 180, 52);
