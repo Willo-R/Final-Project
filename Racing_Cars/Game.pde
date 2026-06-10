@@ -155,14 +155,13 @@ void game() {
 
 
   //SCORING
-  
   //car 1 check points
-  if(carBodyX > 1000 && carBodyY > height/2) car1CheckPoint1 = true;
-  if(carBodyX > 740 && carBodyX < 760 && carBodyY > height/2 && car1CheckPoint1) car1CheckPoint2 = true;
-  if(carBodyX < 500 && carBodyY == height/2 && car1CheckPoint1 && car1CheckPoint2) car1CheckPoint3 = true;
- 
-  
-  // finish line car1
+  if (carBodyX > 1000 && carBodyY > height/2 - 20 && carBodyY < height/2 + 20) car1CheckPoint1 = true;
+  if (carBodyX > 740 && carBodyX < 760 && carBodyY > height/2 && car1CheckPoint1) car1CheckPoint2 = true;
+  if (carBodyX < 500 && carBodyY > height/2 - 20 && carBodyY < height/2 + 20 && car1CheckPoint2) car1CheckPoint3 = true;
+
+
+  //finish line car1
   if (carBodyX > 730 && carBodyX < 760 && carBodyY < height/2 && carVX > 0) {
     if (!car1CrossedLine && car1CheckPoint1 && car1CheckPoint2 && car1CheckPoint3) {
       car1Laps++;
@@ -172,12 +171,18 @@ void game() {
   } else {
     car1CrossedLine = false;
   }
+  
+  //car 2 check points
+  if (car2BodyX > 1000 && car2BodyY > height/2 - 20 && car2BodyY < height/2 + 20) car2CheckPoint1 = true;
+  if (car2BodyX > 740 && car2BodyX < 760 && car2BodyY > height/2 && car2CheckPoint1) car2CheckPoint2 = true;
+  if (car2BodyX < 500 && car2BodyY > height/2 - 20 && car2BodyY < height/2 + 20 && car2CheckPoint2) car2CheckPoint3 = true;
 
-  // finish line car2
+  //finish line car2
   if (car2BodyX > 730 && car2BodyX < 760 && car2BodyY < height/2 && car2VX > 0) {
-    if (!car2CrossedLine) {
+    if (!car2CrossedLine && car2CheckPoint1 && car2CheckPoint2 && car2CheckPoint3) {
       car2Laps++;
       car2CrossedLine = true;
+      car2CheckPoint1 = car2CheckPoint2 = car2CheckPoint3 = false;
     }
   } else {
     car2CrossedLine = false;

@@ -105,7 +105,7 @@ void scoreDisplay() {
   text("P1: " + car1Laps + " / 3", 20, 50);
 
   fill(0);
-  text("P2: " + max(car2Laps, 0) + " / 3", width - 180, 52);
+  text("P2: " + car2Laps + " / 3", width - 180, 52);
   fill(0, 100, 255);
-  text("P2: " + max(car2Laps, 0) + " / 3", width - 182, 50);
+  text("P2: " + car2Laps + " / 3", width - 182, 50);
 }

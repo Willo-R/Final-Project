@@ -70,7 +70,7 @@ void setup() {
 
   //scoring set up
   car1Laps = 0;
-  car2Laps = -1;
+  car2Laps = 0;
   car1CrossedLine = car1CheckPoint1 = car1CheckPoint2 = car1CheckPoint3 = false;
   car2CrossedLine = car2CheckPoint1 = car2CheckPoint2 = car2CheckPoint3 = false;
 }
