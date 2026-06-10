@@ -1,11 +1,13 @@
 void game() {
   drawTrack();
+  scoreDisplay();
 
   //animate car1
   if (wKey) {
     carVX += cos(carAngle) * 0.6;
     carVY += sin(carAngle) * 0.6;
   }
+  //reverse
   if (sKey) {
     carVX -= cos(carAngle) * 0.2;
     carVY -= sin(carAngle) * 0.2;
@@ -16,12 +18,12 @@ void game() {
   if (dKey) carAngle += 0.08;
 
 
-
   //animate car2
   if (upKey) {
     car2VX += cos(car2Angle) * 0.6;
     car2VY += sin(car2Angle) * 0.6;
   }
+  //reverse
   if (downKey) {
     car2VX -= cos(car2Angle) * 0.2;
     car2VY -= sin(car2Angle) * 0.2;
@@ -34,37 +36,37 @@ void game() {
   //boundary checking car1
   if (carBodyX < carBodyW/2) {
     carBodyX = carBodyW/2;
-    carVX *= -1.5;
+    carVX *= -1.2;
   }
   if (carBodyX > width - carBodyW/2) {
     carBodyX = width - carBodyW/2;
-    carVX *= -1.5;
+    carVX *= -1.2;
   }
   if (carBodyY < carBodyL/2) {
     carBodyY = carBodyL/2;
-    carVY *= -1.5;
+    carVY *= -1.2;
   }
   if (carBodyY > height - carBodyL/2) {
     carBodyY = height - carBodyL/2;
-    carVY *= -1.5;
+    carVY *= -1.2;
   }
 
   //boundary checking car2
   if (car2BodyX < car2BodyW/2) {
     car2BodyX = car2BodyW/2;
-    car2VX *= -1.5;
+    car2VX *= -1.2;
   }
   if (car2BodyX > width - car2BodyW/2) {
     car2BodyX = width - car2BodyW/2;
-    car2VX *= -1.5;
+    car2VX *= -1.2;
   }
   if (car2BodyY < car2BodyL/2) {
     car2BodyY = car2BodyL/2;
-    car2VY *= -1.5;
+    car2VY *= -1.2;
   }
   if (car2BodyY > height - car2BodyL/2) {
     car2BodyY = height - car2BodyL/2;
-    car2VY *= -1.5;
+    car2VY *= -1.2;
   }
 
   //tires collision car1
@@ -113,10 +115,13 @@ void game() {
     // inner green field
     carVX *= 0.85;
     carVY *= 0.85;
-  } else if (!(dKey && sKey)) {
+  } else if (!(dKey && sKey || aKey && sKey)) {
     // on track, normal friction
     carVX *= friction;
     carVY *= friction;
+  } else {
+    carVX *= 0.99;
+    carVY *= 0.99;
   }
 
   //friction car2
@@ -130,9 +135,12 @@ void game() {
   } else if (ex2Inner*ex2Inner + ey2Inner*ey2Inner < 1) {
     car2VX *= 0.85;
     car2VY *= 0.85;
-  } else if(!(dKey && sKey)) {
+  } else if (!(rightKey && downKey || leftKey && downKey)) {
     car2VX *= friction;
     car2VY *= friction;
+  } else {
+    carVX *= 0.99;
+    carVY *= 0.99;
   }
 
   //movement
@@ -144,6 +152,36 @@ void game() {
   //draw race car
   drawCar();
   drawCar2();
+
+
+  //SCORING
+  // finish line car1
+  if (carBodyX > 720 && carBodyX < 760 && carBodyY < height/2 && carVX > 0) {
+    if (!car1CrossedLine) {
+      car1Laps++;
+      car1CrossedLine = true;
+    }
+  } else {
+    car1CrossedLine = false;
+  }
+
+  // finish line car2
+  if (car2BodyX > 720 && car2BodyX < 760 && car2BodyY < height/2 && car2VX > 0) {
+    if (!car2CrossedLine) {
+      car2Laps++;
+      car2CrossedLine = true;
+    }
+  } else {
+    car2CrossedLine = false;
+  }
+
+  //check winner
+  if (car1Laps >= 3) {
+    mode = GAMEOVER;
+  }
+  if (car2Laps >= 3) {
+    mode = GAMEOVER;
+  }
 }
 
 void gameClicks() {

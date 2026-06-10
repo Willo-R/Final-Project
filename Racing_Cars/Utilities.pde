@@ -13,14 +13,14 @@ void drawTrack() {
 
   //tires
   for (int i = 0; i < tireCount; i++) {
-  fill(20);
-  noStroke(); 
-  circle(tireX[i], tireY[i], 40);
-  fill(80); 
-  circle(tireX[i], tireY[i], 28);
-  fill(20); 
-  circle(tireX[i], tireY[i], 12);
-}
+    fill(20);
+    noStroke();
+    circle(tireX[i], tireY[i], 40);
+    fill(80);
+    circle(tireX[i], tireY[i], 28);
+    fill(20);
+    circle(tireX[i], tireY[i], 12);
+  }
 
   //checkered start line
   for (int i = 0; i < 12; i++) {
@@ -94,4 +94,18 @@ void drawCar2() {
   rect(10, 11, 8, 14);
 
   popMatrix();
+}
+
+// score display
+void scoreDisplay() {
+  textSize(32);
+  fill(0);
+  text("P1: " + max(car1Laps, 0) + " / 3", 22, 52);
+  fill(255, 100, 0);
+  text("P1: " + max(car1Laps, 0) + " / 3", 20, 50);
+
+  fill(0);
+  text("P2: " + max(car2Laps, 0) + " / 3", width - 180, 52);
+  fill(0, 100, 255);
+  text("P2: " + max(car2Laps, 0) + " / 3", width - 182, 50);
 }

@@ -19,12 +19,16 @@ float car2BodyX, car2BodyY, car2BodyL, car2BodyW;
 float car2Angle;
 float car2VX, car2VY;
 
-
 //collision variables
 float[] tireX;
 float[] tireY;
 int tireCount;
 
+//scoring variables
+int car1Laps;
+int car2Laps;
+boolean car1CrossedLine;
+boolean car2CrossedLine;
 
 void setup() {
   size(1500, 900);
@@ -61,6 +65,13 @@ void setup() {
     tireX[i] = width/2 + cos(angle) * 480;
     tireY[i] = height/2 + sin(angle) * 195;
   }
+  
+  
+  //scoring set up
+  car1Laps = -1;
+  car2Laps = -1;
+  car1CrossedLine = false;
+  car2CrossedLine = false;
 }
 
 void draw() {
