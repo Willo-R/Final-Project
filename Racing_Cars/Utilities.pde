@@ -98,7 +98,7 @@ void drawCar2() {
 
 // score display
 void scoreDisplay() {
-  textSize(32);
+  textFont(raceFont);
   fill(0);
   text("P1: " + car1Laps + " / 3", 22, 52);
   fill(255, 100, 0);

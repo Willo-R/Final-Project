@@ -4,6 +4,14 @@ final int GAME = 1;
 final int PAUSE = 2;
 final int GAMEOVER = 3;
 
+//font
+PFont raceFont;
+
+//GIF
+PImage[] introGIF;
+int introFrameNum;
+int introFrame;
+
 //keyboard variables
 boolean wKey, sKey, aKey, dKey, upKey, downKey, leftKey, rightKey;
 
@@ -33,7 +41,19 @@ boolean car2CrossedLine, car2CheckPoint1, car2CheckPoint2, car2CheckPoint3;
 
 void setup() {
   size(1500, 900);
-  mode = GAME;
+  mode = INTRO;
+  
+  //font
+  raceFont = createFont("raceFont.otf", 25);
+  
+  //intro GIF
+  introFrameNum = 16;
+  introGIF = new PImage[introFrameNum];
+  int frameIntro = 0;
+  while(frameIntro < introFrameNum){
+    introGIF[frameIntro] = loadImage("frame_" + frameIntro + "_delay-0.07s.gif");
+    frameIntro++;
+  }
 
   //initialize keys
   wKey = sKey = aKey = dKey = upKey = downKey = leftKey = rightKey = false;
