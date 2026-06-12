@@ -162,7 +162,7 @@ void game() {
 
 
   //finish line car1
-  if (carBodyX > 730 && carBodyX < 760 && carBodyY < height/2 && carVX > 0) {
+  if (carBodyX > 710 && carBodyX < 750 && carBodyY < height/2 && carVX > 0) {
     if (!car1CrossedLine && car1CheckPoint1 && car1CheckPoint2 && car1CheckPoint3) {
       car1Laps++;
       car1CrossedLine = true;
@@ -178,7 +178,7 @@ void game() {
   if (car2BodyX < 500 && car2BodyY > height/2 - 20 && car2BodyY < height/2 + 20 && car2CheckPoint2) car2CheckPoint3 = true;
 
   //finish line car2
-  if (car2BodyX > 730 && car2BodyX < 760 && car2BodyY < height/2 && car2VX > 0) {
+  if (car2BodyX > 710 && car2BodyX < 750 && car2BodyY < height/2 && car2VX > 0) {
     if (!car2CrossedLine && car2CheckPoint1 && car2CheckPoint2 && car2CheckPoint3) {
       car2Laps++;
       car2CrossedLine = true;

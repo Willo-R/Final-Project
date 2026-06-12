@@ -6,6 +6,7 @@ final int GAMEOVER = 3;
 
 //font
 PFont raceFont;
+float titleSize;
 
 //GIF
 PImage[] introGIF;
@@ -20,7 +21,7 @@ float carBodyX, carBodyY, carBodyL, carBodyW;
 float carAngle;
 float carVX, carVY;
 float friction;
-float maxSpeed;
+
 
 //car2 variables
 float car2BodyX, car2BodyY, car2BodyL, car2BodyW;
@@ -42,16 +43,18 @@ boolean car2CrossedLine, car2CheckPoint1, car2CheckPoint2, car2CheckPoint3;
 void setup() {
   size(1500, 900);
   mode = INTRO;
+  textAlign(CENTER,CENTER);
   
   //font
   raceFont = createFont("raceFont.otf", 25);
+  titleSize = 100;
   
   //intro GIF
-  introFrameNum = 16;
+  introFrameNum = 37;
   introGIF = new PImage[introFrameNum];
   int frameIntro = 0;
   while(frameIntro < introFrameNum){
-    introGIF[frameIntro] = loadImage("frame_" + frameIntro + "_delay-0.07s.gif");
+    introGIF[frameIntro] = loadImage("frame_" + frameIntro + "_delay-0.04s.gif");
     frameIntro++;
   }
 
@@ -66,7 +69,7 @@ void setup() {
   carAngle = 0;
   carVX = carVY = 0;
   friction = 0.95;
-  maxSpeed = 15;
+  
 
   //initialize car2
   car2BodyX = width / 2 - 50;

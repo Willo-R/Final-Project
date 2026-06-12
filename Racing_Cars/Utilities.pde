@@ -100,12 +100,39 @@ void drawCar2() {
 void scoreDisplay() {
   textFont(raceFont);
   fill(0);
-  text("P1: " + car1Laps + " / 3", 22, 52);
+  text("P1: " + car1Laps + " / 3", 92, 52);
   fill(255, 100, 0);
-  text("P1: " + car1Laps + " / 3", 20, 50);
+  text("P1: " + car1Laps + " / 3", 90, 50);
 
   fill(0);
-  text("P2: " + car2Laps + " / 3", width - 180, 52);
+  text("P2: " + car2Laps + " / 3", width - 110, 52);
   fill(0, 100, 255);
-  text("P2: " + car2Laps + " / 3", width - 182, 50);
+  text("P2: " + car2Laps + " / 3", width - 112, 50);
+}
+
+//reset
+void reset() {
+  fill(255);
+  
+  //initialize car
+  carBodyX = width / 2 - 50;
+  carBodyY = 120;
+  carBodyL = 30;
+  carBodyW = 50;
+  carAngle = 0;
+  carVX = carVY = 0;
+  friction = 0.95;
+
+  //initialize car2
+  car2BodyX = width / 2 - 50;
+  car2BodyY = 180;
+  car2BodyL = 30;
+  car2BodyW = 50;
+  car2VX = car2VY = 0;
+  
+  //scoring set up
+  car1Laps = 0;
+  car2Laps = 0;
+  car1CrossedLine = car1CheckPoint1 = car1CheckPoint2 = car1CheckPoint3 = false;
+  car2CrossedLine = car2CheckPoint1 = car2CheckPoint2 = car2CheckPoint3 = false;
 }
