@@ -8,6 +8,9 @@ final int GAMEOVER = 3;
 PFont raceFont;
 float titleSize;
 
+//images
+PImage pauseImage;
+
 //GIF
 PImage[] introGIF;
 int introFrameNum;
@@ -40,20 +43,31 @@ boolean car1CrossedLine, car1CheckPoint1, car1CheckPoint2, car1CheckPoint3;
 boolean car2CrossedLine, car2CheckPoint1, car2CheckPoint2, car2CheckPoint3;
 
 
+//trails
+int trailLength;
+float[] car1TrailX;
+float[] car1TrailY;
+float[] car2TrailX;
+float[] car2TrailY;
+
+
 void setup() {
   size(1500, 900);
   mode = INTRO;
-  textAlign(CENTER,CENTER);
-  
+  textAlign(CENTER, CENTER);
+
   //font
   raceFont = createFont("raceFont.otf", 25);
   titleSize = 100;
   
+  //images
+  pauseImage = loadImage("pauseImage.jpg");
+
   //intro GIF
   introFrameNum = 37;
   introGIF = new PImage[introFrameNum];
   int frameIntro = 0;
-  while(frameIntro < introFrameNum){
+  while (frameIntro < introFrameNum) {
     introGIF[frameIntro] = loadImage("frame_" + frameIntro + "_delay-0.04s.gif");
     frameIntro++;
   }
@@ -69,13 +83,14 @@ void setup() {
   carAngle = 0;
   carVX = carVY = 0;
   friction = 0.95;
-  
+
 
   //initialize car2
   car2BodyX = width / 2 - 50;
   car2BodyY = 180;
   car2BodyL = 30;
   car2BodyW = 50;
+  car2Angle = 0;
   car2VX = car2VY = 0;
 
 
@@ -96,6 +111,21 @@ void setup() {
   car2Laps = 0;
   car1CrossedLine = car1CheckPoint1 = car1CheckPoint2 = car1CheckPoint3 = false;
   car2CrossedLine = car2CheckPoint1 = car2CheckPoint2 = car2CheckPoint3 = false;
+
+
+  //trails set up
+  trailLength = 8;
+  car1TrailX = new float[trailLength];
+  car1TrailY = new float[trailLength];
+  car2TrailX = new float[trailLength];
+  car2TrailY = new float[trailLength];
+  
+  for (int i = 0; i < trailLength; i++) {
+    car1TrailX[i] = carBodyX;
+    car1TrailY[i] = carBodyY;
+    car2TrailX[i] = car2BodyX;
+    car2TrailY[i] = car2BodyY;
+  }
 }
 
 void draw() {

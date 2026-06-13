@@ -143,6 +143,24 @@ void game() {
     carVY *= 0.99;
   }
 
+  //update trails
+  for (int i = 0; i < trailLength - 1; i++) {
+    car1TrailX[i] = car1TrailX[i+1];
+    car1TrailY[i] = car1TrailY[i+1];
+    car2TrailX[i] = car2TrailX[i+1];
+    car2TrailY[i] = car2TrailY[i+1];
+  }
+  //coordinates of the back of the cars
+  float car1RearX = carBodyX - cos(carAngle) * 35;
+  float car1RearY = carBodyY - sin(carAngle) * 35;
+  float car2RearX = car2BodyX - cos(car2Angle) * 35;
+  float car2RearY = car2BodyY - sin(car2Angle) * 35;
+
+  car1TrailX[trailLength-1] = car1RearX;
+  car1TrailY[trailLength-1] = car1RearY;
+  car2TrailX[trailLength-1] = car2RearX;
+  car2TrailY[trailLength-1] = car2RearY;
+
   //movement
   carBodyX += carVX;
   carBodyY += carVY;
@@ -150,8 +168,10 @@ void game() {
   car2BodyY += car2VY;
 
   //draw race car
+  drawTrails();
   drawCar();
   drawCar2();
+
 
 
   //SCORING
@@ -171,7 +191,7 @@ void game() {
   } else {
     car1CrossedLine = false;
   }
-  
+
   //car 2 check points
   if (car2BodyX > 1000 && car2BodyY > height/2 - 20 && car2BodyY < height/2 + 20) car2CheckPoint1 = true;
   if (car2BodyX > 740 && car2BodyX < 760 && car2BodyY > height/2 && car2CheckPoint1) car2CheckPoint2 = true;
@@ -198,4 +218,5 @@ void game() {
 }
 
 void gameClicks() {
+  mode = PAUSE;
 }

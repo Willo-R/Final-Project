@@ -113,7 +113,7 @@ void scoreDisplay() {
 //reset
 void reset() {
   fill(255);
-  
+
   //initialize car
   carBodyX = width / 2 - 50;
   carBodyY = 120;
@@ -128,11 +128,25 @@ void reset() {
   car2BodyY = 180;
   car2BodyL = 30;
   car2BodyW = 50;
+  car2Angle = 0;
   car2VX = car2VY = 0;
-  
+
   //scoring set up
   car1Laps = 0;
   car2Laps = 0;
   car1CrossedLine = car1CheckPoint1 = car1CheckPoint2 = car1CheckPoint3 = false;
   car2CrossedLine = car2CheckPoint1 = car2CheckPoint2 = car2CheckPoint3 = false;
+}
+
+
+//draw trails 
+void drawTrails() {
+  noStroke();
+  for (int i = 0; i < trailLength; i++) {
+    float opacity = map(i, 0, trailLength, 0, 100);
+    fill(255, 0, 0, opacity);
+    circle(car1TrailX[i], car1TrailY[i], 8);
+    fill(0, 100, 255, opacity);
+    circle(car2TrailX[i], car2TrailY[i], 8);
+  }
 }
