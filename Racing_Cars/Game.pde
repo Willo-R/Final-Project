@@ -2,35 +2,57 @@ void game() {
   drawTrack();
   scoreDisplay();
 
-  //animate car1
-  if (wKey) {
-    carVX += cos(carAngle) * 0.6;
-    carVY += sin(carAngle) * 0.6;
+  //count down
+  if (!timerStarted) {
+    startTime = millis();
+    timerStarted = true;
   }
-  //reverse
-  if (sKey) {
-    carVX -= cos(carAngle) * 0.2;
-    carVY -= sin(carAngle) * 0.2;
+  if (!gameStarted) {
+    carVX = 0;
+    carVY = 0;
+    car2VX = 0;
+    car2VY = 0;
+    int elapsed = millis() - startTime;
+    countdownDisplay(elapsed);
   }
 
-  //car rotation
-  if (aKey) carAngle -= 0.08;
-  if (dKey) carAngle += 0.08;
+  if (goShown && millis() - goTime < 1000) {
+    fill(255);
+    textSize(120);
+    text("GO!", width/2, height/2);
+  }
+
+  if (gameStarted) {
+    //animate car1
+    if (wKey) {
+      carVX += cos(carAngle) * 0.6;
+      carVY += sin(carAngle) * 0.6;
+    }
+    //reverse
+    if (sKey) {
+      carVX -= cos(carAngle) * 0.2;
+      carVY -= sin(carAngle) * 0.2;
+    }
+
+    //car rotation
+    if (aKey) carAngle -= 0.08;
+    if (dKey) carAngle += 0.08;
 
 
-  //animate car2
-  if (upKey) {
-    car2VX += cos(car2Angle) * 0.6;
-    car2VY += sin(car2Angle) * 0.6;
+    //animate car2
+    if (upKey) {
+      car2VX += cos(car2Angle) * 0.6;
+      car2VY += sin(car2Angle) * 0.6;
+    }
+    //reverse
+    if (downKey) {
+      car2VX -= cos(car2Angle) * 0.2;
+      car2VY -= sin(car2Angle) * 0.2;
+    }
+    //car2 rotation
+    if (leftKey) car2Angle -= 0.08;
+    if (rightKey) car2Angle += 0.08;
   }
-  //reverse
-  if (downKey) {
-    car2VX -= cos(car2Angle) * 0.2;
-    car2VY -= sin(car2Angle) * 0.2;
-  }
-  //car2 rotation
-  if (leftKey) car2Angle -= 0.08;
-  if (rightKey) car2Angle += 0.08;
 
 
   //boundary checking car1

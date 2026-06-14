@@ -51,6 +51,14 @@ float[] car2TrailX;
 float[] car2TrailY;
 
 
+//count down vars
+boolean timerStarted;
+int startTime;
+boolean gameStarted;
+int goTime;
+boolean goShown;
+
+
 void setup() {
   size(1500, 900);
   mode = INTRO;
@@ -114,7 +122,7 @@ void setup() {
 
 
   //trails set up
-  trailLength = 8;
+  trailLength = 5;
   car1TrailX = new float[trailLength];
   car1TrailY = new float[trailLength];
   car2TrailX = new float[trailLength];
@@ -126,6 +134,13 @@ void setup() {
     car2TrailX[i] = car2BodyX;
     car2TrailY[i] = car2BodyY;
   }
+  
+  //count down set up
+  timerStarted = false;
+  startTime = 0;
+  gameStarted = false;
+  goTime = 0;
+  goShown = false;
 }
 
 void draw() {

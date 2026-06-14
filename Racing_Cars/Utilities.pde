@@ -136,10 +136,17 @@ void reset() {
   car2Laps = 0;
   car1CrossedLine = car1CheckPoint1 = car1CheckPoint2 = car1CheckPoint3 = false;
   car2CrossedLine = car2CheckPoint1 = car2CheckPoint2 = car2CheckPoint3 = false;
+
+  //count down set up
+  timerStarted = false;
+  startTime = 0;
+  gameStarted = false;
+  goTime = 0;
+  goShown = false;
 }
 
 
-//draw trails 
+//draw trails
 void drawTrails() {
   noStroke();
   for (int i = 0; i < trailLength; i++) {
@@ -148,5 +155,21 @@ void drawTrails() {
     circle(car1TrailX[i], car1TrailY[i], 8);
     fill(0, 100, 255, opacity);
     circle(car2TrailX[i], car2TrailY[i], 8);
+  }
+}
+
+
+void countdownDisplay(int elapsed) {
+  int countDown = 5 - elapsed/1000;
+
+  textSize(150);
+  fill(255);
+
+  if (countDown > 0) {
+    text(countDown, width/2, height/2);
+  } else if (!goShown) {
+    goTime = millis();
+    goShown = true;
+    gameStarted = true;
   }
 }
