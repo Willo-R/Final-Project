@@ -58,37 +58,37 @@ void game() {
   //boundary checking car1
   if (carBodyX < carBodyW/2) {
     carBodyX = carBodyW/2;
-    carVX *= -1.2;
+    carVX *= -1.1;
   }
   if (carBodyX > width - carBodyW/2) {
     carBodyX = width - carBodyW/2;
-    carVX *= -1.2;
+    carVX *= -1.1;
   }
   if (carBodyY < carBodyL/2) {
     carBodyY = carBodyL/2;
-    carVY *= -1.2;
+    carVY *= -1.1;
   }
   if (carBodyY > height - carBodyL/2) {
     carBodyY = height - carBodyL/2;
-    carVY *= -1.2;
+    carVY *= -1.1;
   }
 
   //boundary checking car2
   if (car2BodyX < car2BodyW/2) {
     car2BodyX = car2BodyW/2;
-    car2VX *= -1.2;
+    car2VX *= -1.1;
   }
   if (car2BodyX > width - car2BodyW/2) {
     car2BodyX = width - car2BodyW/2;
-    car2VX *= -1.2;
+    car2VX *= -1.1;
   }
   if (car2BodyY < car2BodyL/2) {
     car2BodyY = car2BodyL/2;
-    car2VY *= -1.2;
+    car2VY *= -1.1;
   }
   if (car2BodyY > height - car2BodyL/2) {
     car2BodyY = height - car2BodyL/2;
-    car2VY *= -1.2;
+    car2VY *= -1.1;
   }
 
   //tires collision car1
@@ -129,12 +129,8 @@ void game() {
   float eyOuter = (carBodyY - height/2) / (780/2);
   float exInner = (carBodyX - width/2) / (1050/2);
   float eyInner = (carBodyY - height/2) / (430/2);
-  if (exOuter*exOuter + eyOuter*eyOuter > 1) {
-    // outer dark green corners
-    carVX *= 0.85;
-    carVY *= 0.85;
-  } else if (exInner*exInner + eyInner*eyInner < 1) {
-    // inner green field
+  if (exOuter*exOuter + eyOuter*eyOuter > 1 || exInner*exInner + eyInner*eyInner < 1) {
+    // outer dark green corners and inner green field
     carVX *= 0.85;
     carVY *= 0.85;
   } else if (!(dKey && sKey || aKey && sKey)) {
@@ -151,18 +147,15 @@ void game() {
   float ey2Outer = (car2BodyY - height/2) / (780/2);
   float ex2Inner = (car2BodyX - width/2) / (1050/2);
   float ey2Inner = (car2BodyY - height/2) / (430/2);
-  if (ex2Outer*ex2Outer + ey2Outer*ey2Outer > 1) {
-    car2VX *= 0.85;
-    car2VY *= 0.85;
-  } else if (ex2Inner*ex2Inner + ey2Inner*ey2Inner < 1) {
+  if (ex2Outer*ex2Outer + ey2Outer*ey2Outer > 1 || ex2Inner*ex2Inner + ey2Inner*ey2Inner < 1) {
     car2VX *= 0.85;
     car2VY *= 0.85;
   } else if (!(rightKey && downKey || leftKey && downKey)) {
     car2VX *= friction;
     car2VY *= friction;
   } else {
-    carVX *= 0.99;
-    carVY *= 0.99;
+    car2VX *= 0.99;
+    car2VY *= 0.99;
   }
 
   //update trails

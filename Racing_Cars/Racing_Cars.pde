@@ -4,6 +4,10 @@ final int GAME = 1;
 final int PAUSE = 2;
 final int GAMEOVER = 3;
 
+//color palette
+color red = #FF0000;
+color blue = #007FFF;
+
 //font
 PFont raceFont;
 float titleSize;
@@ -57,6 +61,10 @@ int startTime;
 boolean gameStarted;
 int goTime;
 boolean goShown;
+
+//game over winner starting position
+float winnerY = 800;
+
 
 
 void setup() {
@@ -141,6 +149,7 @@ void setup() {
   gameStarted = false;
   goTime = 0;
   goShown = false;
+  
 }
 
 void draw() {

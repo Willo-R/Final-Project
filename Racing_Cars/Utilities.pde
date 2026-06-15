@@ -1,8 +1,8 @@
 void drawTrack() {
-  //background - dark green like a stadium
+  //background 
   background(30, 80, 30);
 
-  //outer track (darker gray, bigger)
+  //outer track 
   fill(50);
   noStroke();
   ellipse(width/2, height/2, 1480, 780);
@@ -38,7 +38,7 @@ void drawCar() {
   rotate(carAngle + PI/2);
 
   //main body
-  fill(255, 0, 0);
+  fill(red);
   noStroke();
   rect(-8, -35, 16, 70);
 
@@ -50,7 +50,7 @@ void drawCar() {
   rect(-6, -6, 12, 13);
 
   //front wing
-  fill(255, 0, 0);
+  fill(red);
   rect(-13, -35, 26, 5);
 
   //rear wing
@@ -70,19 +70,19 @@ void drawCar() {
   popMatrix();
 }
 
-
+//same as the red car
 void drawCar2() {
   pushMatrix();
   translate(car2BodyX, car2BodyY);
   rotate(car2Angle + PI/2);
 
-  fill(0, 100, 255);
+  fill(blue);
   noStroke();
   rect(-8, -35, 16, 70);
   rect(-14, -8, 28, 20);
   fill(30);
   rect(-6, -6, 12, 13);
-  fill(0, 100, 255);
+  fill(blue);
   rect(-13, -35, 26, 5);
   rect(-18, 28, 36, 4);
   rect(-6, 24, 4, 7);
@@ -101,12 +101,12 @@ void scoreDisplay() {
   textFont(raceFont);
   fill(0);
   text("P1: " + car1Laps + " / 3", 92, 52);
-  fill(255, 100, 0);
+  fill(red);
   text("P1: " + car1Laps + " / 3", 90, 50);
 
   fill(0);
   text("P2: " + car2Laps + " / 3", width - 110, 52);
-  fill(0, 100, 255);
+  fill(blue);
   text("P2: " + car2Laps + " / 3", width - 112, 50);
 }
 
@@ -143,6 +143,9 @@ void reset() {
   gameStarted = false;
   goTime = 0;
   goShown = false;
+  
+  //winner initial position
+  winnerY = 800;
 }
 
 
@@ -151,9 +154,9 @@ void drawTrails() {
   noStroke();
   for (int i = 0; i < trailLength; i++) {
     float opacity = map(i, 0, trailLength, 0, 100);
-    fill(255, 0, 0, opacity);
+    fill(red, opacity);
     circle(car1TrailX[i], car1TrailY[i], 8);
-    fill(0, 100, 255, opacity);
+    fill(blue, opacity);
     circle(car2TrailX[i], car2TrailY[i], 8);
   }
 }
