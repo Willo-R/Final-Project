@@ -1,6 +1,7 @@
 void game() {
   drawTrack();
   scoreDisplay();
+  countDown.play();
 
   //count down
   if (!timerStarted) {
@@ -234,4 +235,5 @@ void game() {
 
 void gameClicks() {
   mode = PAUSE;
+  countDown.pause();
 }

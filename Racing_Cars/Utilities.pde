@@ -146,6 +146,9 @@ void reset() {
   
   //winner initial position
   winnerY = 800;
+  
+  //sounds
+  introMusic.rewind();
 }
 
 
@@ -163,7 +166,7 @@ void drawTrails() {
 
 
 void countdownDisplay(int elapsed) {
-  int countDown = 5 - elapsed/1000;
+  int countDown = 3 - elapsed/1000;
 
   textSize(150);
   fill(255);

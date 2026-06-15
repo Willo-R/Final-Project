@@ -1,3 +1,10 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 int mode;
 final int INTRO = 0;
 final int GAME = 1;
@@ -7,6 +14,10 @@ final int GAMEOVER = 3;
 //color palette
 color red = #FF0000;
 color blue = #007FFF;
+
+//sound variables
+Minim minim;
+AudioPlayer introMusic, countDown, scoring;
 
 //font
 PFont raceFont;
@@ -71,6 +82,11 @@ void setup() {
   size(1500, 900);
   mode = INTRO;
   textAlign(CENTER, CENTER);
+  
+  //sound variables
+  minim = new Minim(this);
+  introMusic = minim.loadFile("introMusic.mp3");
+  countDown = minim.loadFile("countDown.mp3");
 
   //font
   raceFont = createFont("raceFont.otf", 25);
