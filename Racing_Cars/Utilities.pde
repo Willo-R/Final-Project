@@ -24,7 +24,8 @@ void drawTrack() {
 
   //checkered start line
   for (int i = 0; i < 12; i++) {
-    if (i % 2 == 0) fill(255);
+    if (i % 2 == 0) 
+    fill(255);
     else fill(0);
     rect(740, 62 + i * 14, 20, 15);
   }
@@ -149,6 +150,8 @@ void reset() {
   
   //sounds
   introMusic.rewind();
+  countDown.rewind();
+  applause.rewind();
 }
 
 

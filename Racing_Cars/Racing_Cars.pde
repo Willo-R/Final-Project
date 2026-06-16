@@ -17,7 +17,7 @@ color blue = #007FFF;
 
 //sound variables
 Minim minim;
-AudioPlayer introMusic, countDown, scoring;
+AudioPlayer introMusic, countDown, scoring, applause;
 
 //font
 PFont raceFont;
@@ -87,6 +87,7 @@ void setup() {
   minim = new Minim(this);
   introMusic = minim.loadFile("introMusic.mp3");
   countDown = minim.loadFile("countDown.mp3");
+  applause = minim.loadFile("applause.mp3");
 
   //font
   raceFont = createFont("raceFont.otf", 25);

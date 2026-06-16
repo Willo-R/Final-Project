@@ -102,9 +102,14 @@ void gameover() {
   fill(255);
   textSize(25);
   text("<Click to restart>", width/2, height - 20);
+  
+  
+  //applause
+  applause.play();
 }
 
 void gameoverClicks() {
   reset();
   mode = INTRO;
+  applause.pause();
 }
