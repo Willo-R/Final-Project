@@ -87,6 +87,7 @@ void setup() {
   minim = new Minim(this);
   introMusic = minim.loadFile("introMusic.mp3");
   countDown = minim.loadFile("countDown.mp3");
+  scoring = minim.loadFile("score.mp3");
   applause = minim.loadFile("applause.mp3");
 
   //font

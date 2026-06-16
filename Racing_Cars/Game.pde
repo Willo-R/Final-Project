@@ -203,6 +203,9 @@ void game() {
       car1Laps++;
       car1CrossedLine = true;
       car1CheckPoint1 = car1CheckPoint2 = car1CheckPoint3 = false;
+      //scoring
+      scoring.rewind();
+      scoring.play();
     }
   } else {
     car1CrossedLine = false;
@@ -219,6 +222,9 @@ void game() {
       car2Laps++;
       car2CrossedLine = true;
       car2CheckPoint1 = car2CheckPoint2 = car2CheckPoint3 = false;
+      //scoring
+      scoring.rewind();
+      scoring.play();
     }
   } else {
     car2CrossedLine = false;
