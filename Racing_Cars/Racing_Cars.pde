@@ -17,7 +17,8 @@ color blue = #007FFF;
 
 //sound variables
 Minim minim;
-AudioPlayer introMusic, countDown, scoring, applause;
+AudioPlayer introMusic, countDown, scoring, bouncing, carCollision, engine1, engine2, applause;
+boolean useEngine1 = true;
 
 //font
 PFont raceFont;
@@ -82,18 +83,24 @@ void setup() {
   size(1500, 900);
   mode = INTRO;
   textAlign(CENTER, CENTER);
-  
+
   //sound variables
   minim = new Minim(this);
   introMusic = minim.loadFile("introMusic.mp3");
   countDown = minim.loadFile("countDown.mp3");
   scoring = minim.loadFile("score.mp3");
+  bouncing = minim.loadFile("bouncing.mp3");
+  carCollision = minim.loadFile("carCollision.mp3");
   applause = minim.loadFile("applause.mp3");
+
+  engine1 = minim.loadFile("engine.mp3");
+  engine2 = minim.loadFile("engine.mp3");
+  //engine1.play();
 
   //font
   raceFont = createFont("raceFont.otf", 25);
   titleSize = 100;
-  
+
   //images
   pauseImage = loadImage("pauseImage.jpg");
 
@@ -153,21 +160,20 @@ void setup() {
   car1TrailY = new float[trailLength];
   car2TrailX = new float[trailLength];
   car2TrailY = new float[trailLength];
-  
+
   for (int i = 0; i < trailLength; i++) {
     car1TrailX[i] = carBodyX;
     car1TrailY[i] = carBodyY;
     car2TrailX[i] = car2BodyX;
     car2TrailY[i] = car2BodyY;
   }
-  
+
   //count down set up
   timerStarted = false;
   startTime = 0;
   gameStarted = false;
   goTime = 0;
   goShown = false;
-  
 }
 
 void draw() {

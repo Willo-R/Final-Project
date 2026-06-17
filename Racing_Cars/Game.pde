@@ -53,6 +53,7 @@ void game() {
     //car2 rotation
     if (leftKey) car2Angle -= 0.08;
     if (rightKey) car2Angle += 0.08;
+
   }
 
 
@@ -60,36 +61,60 @@ void game() {
   if (carBodyX < carBodyW/2) {
     carBodyX = carBodyW/2;
     carVX *= -1.1;
+    //sound
+    bouncing.rewind();
+    bouncing.play();
   }
   if (carBodyX > width - carBodyW/2) {
     carBodyX = width - carBodyW/2;
     carVX *= -1.1;
+    //sound
+    bouncing.rewind();
+    bouncing.play();
   }
   if (carBodyY < carBodyL/2) {
     carBodyY = carBodyL/2;
     carVY *= -1.1;
+    //sound
+    bouncing.rewind();
+    bouncing.play();
   }
   if (carBodyY > height - carBodyL/2) {
     carBodyY = height - carBodyL/2;
     carVY *= -1.1;
+    //sound
+    bouncing.rewind();
+    bouncing.play();
   }
 
   //boundary checking car2
   if (car2BodyX < car2BodyW/2) {
     car2BodyX = car2BodyW/2;
     car2VX *= -1.1;
+    //sound
+    bouncing.rewind();
+    bouncing.play();
   }
   if (car2BodyX > width - car2BodyW/2) {
     car2BodyX = width - car2BodyW/2;
     car2VX *= -1.1;
+    //sound
+    bouncing.rewind();
+    bouncing.play();
   }
   if (car2BodyY < car2BodyL/2) {
     car2BodyY = car2BodyL/2;
     car2VY *= -1.1;
+    //sound
+    bouncing.rewind();
+    bouncing.play();
   }
   if (car2BodyY > height - car2BodyL/2) {
     car2BodyY = height - car2BodyL/2;
     car2VY *= -1.1;
+    //sound
+    bouncing.rewind();
+    bouncing.play();
   }
 
   //tires collision car1
@@ -100,6 +125,9 @@ void game() {
       float totalPush = sqrt(pushX*pushX + pushY*pushY);
       carVX = (pushX/totalPush) * 5;
       carVY = (pushY/totalPush) * 5;
+      //sound
+      bouncing.rewind();
+      bouncing.play();
     }
   }
 
@@ -111,6 +139,9 @@ void game() {
       float totalPush = sqrt(pushX*pushX + pushY*pushY);
       car2VX = (pushX/totalPush) * 5;
       car2VY = (pushY/totalPush) * 5;
+      //sound
+      bouncing.rewind();
+      bouncing.play();
     }
   }
 
@@ -123,6 +154,9 @@ void game() {
     carVY = (pushY/totalPush) * 5;
     car2VX = -(pushX/totalPush) * 5;
     car2VY = -(pushY/totalPush) * 5;
+    //sound
+    carCollision.rewind();
+    carCollision.play();
   }
 
   //friction car1
