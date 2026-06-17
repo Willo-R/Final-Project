@@ -18,7 +18,7 @@ color blue = #007FFF;
 //sound variables
 Minim minim;
 AudioPlayer introMusic, countDown, scoring, bouncing, carCollision, engine1, engine2, applause;
-boolean useEngine1 = true;
+float volume;
 
 //font
 PFont raceFont;
@@ -94,8 +94,7 @@ void setup() {
   applause = minim.loadFile("applause.mp3");
 
   engine1 = minim.loadFile("engine.mp3");
-  engine2 = minim.loadFile("engine.mp3");
-  //engine1.play();
+  volume = -80;
 
   //font
   raceFont = createFont("raceFont.otf", 25);

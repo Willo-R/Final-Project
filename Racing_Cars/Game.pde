@@ -53,7 +53,14 @@ void game() {
     //car2 rotation
     if (leftKey) car2Angle -= 0.08;
     if (rightKey) car2Angle += 0.08;
+    
+   // if(engine1.duration() > 6.0) engine1.rewind();
 
+    float speed = sqrt(carVX * carVX + carVY * carVY);
+    volume = map(speed, 0, 8, -80, -30);
+    engine1.setGain(volume);
+    engine1.play();
+   
   }
 
 

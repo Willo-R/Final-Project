@@ -152,6 +152,7 @@ void reset() {
   introMusic.rewind();
   countDown.rewind();
   applause.rewind();
+  engine1.rewind();
 }
 
 

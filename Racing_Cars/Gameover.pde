@@ -106,6 +106,7 @@ void gameover() {
   
   //applause
   applause.play();
+  engine1.pause();
 }
 
 void gameoverClicks() {
