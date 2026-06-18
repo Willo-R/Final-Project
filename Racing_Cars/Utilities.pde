@@ -153,6 +153,7 @@ void reset() {
   countDown.rewind();
   applause.rewind();
   engine1.rewind();
+  engine2.rewind();
 }
 
 

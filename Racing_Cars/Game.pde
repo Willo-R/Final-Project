@@ -24,6 +24,9 @@ void game() {
   }
 
   if (gameStarted) {
+    if (!engine1.isPlaying()) engine1.play();
+    if (!engine2.isPlaying()) engine2.play();
+
     //animate car1
     if (wKey) {
       carVX += cos(carAngle) * 0.6;
@@ -53,14 +56,26 @@ void game() {
     //car2 rotation
     if (leftKey) car2Angle -= 0.08;
     if (rightKey) car2Angle += 0.08;
-    
-   // if(engine1.duration() > 6.0) engine1.rewind();
 
+    //car1 engine
     float speed = sqrt(carVX * carVX + carVY * carVY);
-    volume = map(speed, 0, 8, -80, -30);
-    engine1.setGain(volume);
-    engine1.play();
-   
+    volume1 = map(speed, 0, 8, -60, -20);
+    engine1.setGain(volume1);
+
+    if (engine1.position() > 6000) {
+      engine1.rewind();
+      engine1.skip(1000);
+    }
+
+    //car2 engine
+    float speed2 = sqrt(car2VX * car2VX + car2VY * car2VY);
+    volume2 = map(speed2, 0, 8, -50, -10);
+    engine2.setGain(volume2);
+
+    if (engine2.position() > 6000) {
+      engine2.rewind();
+      engine2.skip(1000);
+    }
   }
 
 
